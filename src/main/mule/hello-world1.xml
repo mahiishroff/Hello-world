@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="fc32bd81-08a8-4a78-bc5a-c228f714f1de" >
+		<http:listener-connection host="localhost" port="8081" />
+	</http:listener-config>
+	<flow name="hello-world1Flow" doc:id="058e1fda-65bf-4216-bc3a-189f96f9bea7" >
+		<http:listener doc:name="Listener" doc:id="1ce22fe1-1544-4303-a5f5-853415f42ea9" config-ref="HTTP_Listener_config" path="test"/>
+		<ee:transform doc:name="Transform Message" doc:id="8cbd2eec-d481-44f3-8232-56c868f2a5f4" >
+			<ee:message >
+				<ee:set-payload ><![CDATA["Hello World"]]></ee:set-payload>
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="x" ><![CDATA[10]]></ee:set-variable>
+				<ee:set-variable variableName="y" ><![CDATA[20]]></ee:set-variable>
+				<ee:set-variable variableName="num1" ><![CDATA[30]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<ee:transform doc:name="Transform Message" doc:id="30a8f58b-0a8b-4464-b738-61cdd38a2e2b" >
+			<ee:message >
+				<ee:set-payload ><![CDATA["hi"]]></ee:set-payload>
+				<ee:set-attributes ><![CDATA[20]]></ee:set-attributes>
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="num1" ><![CDATA[20]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<ee:transform doc:name="Transform Message" doc:id="5be7969f-a242-4a1a-b7df-6f7d10388335" >
+			<ee:message >
+				<ee:set-payload ><![CDATA["byee"++" "++"hii"]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
